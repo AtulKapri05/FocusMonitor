@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Focus Guardian</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Top-right modern toggle -->
+  <div class="toggle-container">
+    <label class="toggle-label">☀ / 🌙</label>
+    <label class="switch">
+      <input id="mode-toggle" type="checkbox" />
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <main class="shell">
+    <header class="hero">
+      <div class="logo">🧠</div>
+      <div>
+        <h1>Focus Guardian</h1>
+        <p class="subtitle">Stay alert — your smart attention tracker.</p>
+      </div>
+    </header>
+
+    <section class="card">
+      <!-- Video (Flask MJPEG stream) -->
+      <div class="video-wrap">
+        <img id="video" src="{{ url_for('video_feed') }}" alt="Live feed">
+      </div>
+
+      <!-- Stats row -->
+      <div class="stats-row">
+        <div class="stat">
+          <div class="label">Focus Score</div>
+          <div id="focus-score" class="big">100%</div>
+        </div>
+        <div class="stat">
+          <div class="label">Alert Level</div>
+          <div id="alert-status" class="big green">Fully Focused 🔥</div>
+        </div>
+      </div>
+
+      <!-- Chart -->
+      <div class="chart-wrap">
+        <canvas id="focusChart"></canvas>
+      </div>
+
+      <div class="actions">
+        <button id="start-btn" class="btn-primary">Start Tracking</button>
+      </div>
+    </section>
+
+    <div id="toast" class="toast">⚠ Stay Focused!</div>
+  </main>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
